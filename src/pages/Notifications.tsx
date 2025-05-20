@@ -29,6 +29,7 @@ const initialNotifications = [
     type: 'report',
     read: false,
   },
+
   {
     id: 4,
     title: 'System update complete',

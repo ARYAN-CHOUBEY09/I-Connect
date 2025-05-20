@@ -51,7 +51,7 @@ const Settings = () => {
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        {/* Sidebar */}
+       
         <Card className="p-0 lg:col-span-1 overflow-hidden h-24">
           <nav className="flex lg:flex-col overflow-x-auto lg:overflow-x-visible">
             {tabs.map((tab) => (

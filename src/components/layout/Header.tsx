@@ -16,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
   return (
     <header className="sticky top-0 z-20 bg-surface border-b border-border h-16">
       <div className="h-full px-4 flex items-center justify-between">
-        {/* Left side - Mobile menu + search */}
+        
         <div className="flex items-center">
           <button 
             onClick={toggleSidebar}
@@ -25,7 +25,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
             <Menu size={24} />
           </button>
           
-          {/* Desktop Search */}
+          
           <div className="hidden md:flex items-center relative">
             <Search size={18} className="absolute left-3 text-gray-400" />
             <input 
@@ -35,7 +35,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
             />
           </div>
           
-          {/* Mobile search toggle */}
+          
           <button 
             onClick={() => setShowSearch(!showSearch)}
             className="md:hidden text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
@@ -44,7 +44,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
           </button>
         </div>
         
-        {/* Right side - icons */}
+        
         <div className="flex items-center space-x-1">
           <button 
             onClick={() => setShowNotifications(!showNotifications)}
@@ -64,7 +64,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
         </div>
       </div>
       
-      {/* Mobile Search */}
+      
       <AnimatePresence>
         {showSearch && (
           <motion.div 
@@ -93,7 +93,7 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
         )}
       </AnimatePresence>
       
-      {/* Notifications panel */}
+      
       <AnimatePresence>
         {showNotifications && (
           <NotificationPanel onClose={() => setShowNotifications(false)} />
