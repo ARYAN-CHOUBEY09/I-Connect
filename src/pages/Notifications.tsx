@@ -128,7 +128,7 @@ const Notifications = () => {
         </div>
       </div>
       
-      {/* Filters */}
+      
       <Card className="p-2 flex overflow-x-auto hide-scrollbar">
         <div className="flex space-x-1">
           {filters.map((filter) => (
@@ -147,7 +147,7 @@ const Notifications = () => {
         </div>
       </Card>
       
-      {/* Notifications list */}
+     
       <div className="space-y-4">
         {filteredNotifications.length === 0 ? (
           <Card className="p-12 flex flex-col items-center justify-center">
