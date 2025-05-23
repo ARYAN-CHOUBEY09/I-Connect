@@ -21,7 +21,7 @@ const ChatInput: React.FC<ChatInputProps> = ({ onSendMessage }) => {
     <div className="border-t border-border p-4">
       <form onSubmit={handleSubmit} className="flex items-end">
         <div className="flex-1 relative">
-          <textarea
+          <textarea 
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="Type your message..."

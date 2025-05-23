@@ -30,6 +30,11 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   });
 
   useEffect(() => {
+    //  ${
+    //         isDarkMode
+    //           ? 'bg-gray-900'
+    //           : 'bg-gradient-to-b from-indigo-50 via-purple-50 to-pink-50'
+    //       }`
     
     if (isDarkMode) {
       document.documentElement.classList.add('dark');
@@ -42,7 +47,7 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
     }
     
     
-    localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
+    localStorage.setItem('theme', isDarkMode ? 'dark' : 'bg-gradient-to-b from-indigo-50 via-purple-50 to-pink-50');
   }, [isDarkMode]);
 
   const toggleTheme = () => {

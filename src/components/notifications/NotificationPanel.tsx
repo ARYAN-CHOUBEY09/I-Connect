@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { X, Check } from 'lucide-react';
 import Button from '../ui/Button';
@@ -7,7 +7,7 @@ interface NotificationPanelProps {
   onClose: () => void;
 }
 
-const notifications = [
+const initialNotifications = [
   {
     id: 1,
     title: 'New message from Jessica',
@@ -39,6 +39,14 @@ const notifications = [
 ];
 
 const NotificationPanel: React.FC<NotificationPanelProps> = ({ onClose }) => {
+  const [notifications, setNotifications] = useState(initialNotifications);
+
+  const markAllAsRead = () => {
+    setNotifications((prev) =>
+      prev.map((notification) => ({ ...notification, unread: false }))
+    );
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -10 }}
@@ -50,19 +58,23 @@ const NotificationPanel: React.FC<NotificationPanelProps> = ({ onClose }) => {
       <div className="flex items-center justify-between p-4 border-b border-border">
         <h3 className="font-semibold">Notifications</h3>
         <div className="flex items-center space-x-2">
-          <Button 
-            variant="ghost" 
+          <Button
+            variant="ghost"
             size="sm"
             icon={<Check size={16} />}
+            onClick={markAllAsRead}
           >
             Mark all as read
           </Button>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+          <button
+            onClick={onClose}
+            className="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+          >
             <X size={20} />
           </button>
         </div>
       </div>
-      
+
       <div className="divide-y divide-border">
         {notifications.map((notification, index) => (
           <motion.div
@@ -89,7 +101,7 @@ const NotificationPanel: React.FC<NotificationPanelProps> = ({ onClose }) => {
           </motion.div>
         ))}
       </div>
-      
+
       <div className="p-3 border-t border-border">
         <Button variant="outline" size="sm" fullWidth>
           View all notifications

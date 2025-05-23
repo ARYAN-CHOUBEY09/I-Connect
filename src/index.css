@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 
 @tailwind base;
 @tailwind components;
@@ -22,11 +27,21 @@
   }
 
   .light {
-    --color-background: 248 250 252;
-    --color-surface: 255 255 255;
-    --color-text: 15 23 42;
-    --color-border: 226 232 240;
-  }
+  --color-background-from: #fdfcfb;
+  --color-background-to: #e9defa;
+  --color-text: 34 34 34;
+  --color-border: 230 230 250;
+  --color-surface: 255 255 255; 
+}
+html.light body {
+  background-image: linear-gradient(to bottom right, var(--color-background-from), var(--color-background-to));
+  color: rgb(var(--color-text));
+}
+.light.card {
+  background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.9), rgba(245, 245, 255, 0.8));
+  border: 1px solid rgb(var(--color-border));
+  backdrop-filter: blur(8px); 
+}
 
   body {
     font-family: 'Inter', sans-serif;
@@ -63,3 +78,4 @@
     @apply bg-surface rounded-xl shadow-sm border border-border p-6 transition-all duration-200;
   }
 }
+

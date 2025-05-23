@@ -18,7 +18,7 @@ const Dashboard = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="space-y-6"
+      className="space-y-6 "
     >
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
         <div>
@@ -36,8 +36,7 @@ const Dashboard = () => {
           </select>
         </div>
       </div>
-      
-      {/* Stats grid */}
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <Card className="flex items-center">
           <div className="p-4 rounded-full bg-primary/10">
@@ -54,7 +53,7 @@ const Dashboard = () => {
             </div>
           </div>
         </Card>
-        
+
         <Card className="flex items-center">
           <div className="p-4 rounded-full bg-secondary/10">
             <MessageSquare size={24} className="text-secondary" />
@@ -70,7 +69,7 @@ const Dashboard = () => {
             </div>
           </div>
         </Card>
-        
+
         <Card className="flex items-center">
           <div className="p-4 rounded-full bg-accent/10">
             <Bell size={24} className="text-accent" />
@@ -86,7 +85,7 @@ const Dashboard = () => {
             </div>
           </div>
         </Card>
-        
+
         <Card className="flex items-center">
           <div className="p-4 rounded-full bg-success/10">
             <Clock size={24} className="text-success" />
@@ -103,9 +102,8 @@ const Dashboard = () => {
           </div>
         </Card>
       </div>
-      
-      {/* Charts and activity section */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         <Card className="lg:col-span-2">
           <div className="flex items-center justify-between mb-4">
             <h3 className="font-semibold">Activity Overview</h3>
@@ -125,7 +123,7 @@ const Dashboard = () => {
             <span className="ml-2 text-gray-500">Activity chart visualization</span>
           </div>
         </Card>
-        
+
         <Card>
           <h3 className="font-semibold mb-4">Recent Activity</h3>
           <div className="space-y-4">
@@ -145,6 +143,38 @@ const Dashboard = () => {
           </div>
           <button className="w-full mt-4 text-center p-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors">
             View all activity
+          </button>
+        </Card>
+
+        {/* AI Assistant Section */}
+        <Card>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold text-lg">AI Assistant</h3>
+            <span className="text-sm text-gray-500 dark:text-gray-400">Powered by GPT</span>
+          </div>
+          <div className="bg-muted p-4 rounded-lg h-48 overflow-y-auto space-y-2 text-sm text-gray-800 dark:text-gray-100">
+            <div className="bg-background p-2 rounded shadow-sm border border-border w-max max-w-[80%]">
+              👋 Hi Aryan! Need help with something today?
+            </div>
+            <div className="bg-primary text-white p-2 rounded shadow-sm w-max max-w-[80%] ml-auto">
+              Show me a summary of last week's activity.
+            </div>
+            <div className="bg-background p-2 rounded shadow-sm border border-border w-max max-w-[80%]">
+              Here’s your summary: 328 conversations, 42 alerts, 1.8h avg. response.
+            </div>
+          </div>
+           <div className="mt-4 flex items-center space-x-2">
+    <input
+      type="text"
+      placeholder="Ask a Anything..."
+      className=" mt-4 flex-1 px-3 py-2 text-sm rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
+    />
+    <button className=" mt-5 bg-primary text-white px-4 py-2 text-sm rounded-lg hover:bg-primary/90 transition-colors">
+      Send
+    </button>
+  </div>
+          <button className="mt-8 w-full text-center p-2 text-sm text-primary hover:bg-primary/5 rounded-lg transition-colors">
+            Open Chat Assistant
           </button>
         </Card>
       </div>

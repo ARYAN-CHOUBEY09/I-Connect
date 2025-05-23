@@ -4,6 +4,7 @@ import { User, Search, MoreVertical, Mail, Phone, Video } from 'lucide-react';
 import Button from '../components/ui/Button';
 import Message, { MessageType } from '../components/chat/Message';
 import ChatInput from '../components/chat/ChatInput';
+import { useTheme } from '../context/ThemeContext';
 
 const initialMessages: MessageType[] = [
   {
@@ -95,6 +96,7 @@ const chatList = [
 const Chats = () => {
   const [messages, setMessages] = useState<MessageType[]>(initialMessages);
   const [selectedChat, setSelectedChat] = useState(1);
+  const { isDarkMode } = useTheme();
 
   const handleSendMessage = (text: string) => {
     const newMessage: MessageType = {
@@ -128,20 +130,23 @@ const Chats = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}
-      className="h-[calc(100vh-6rem)] flex flex-col"
+      className="h-[calc(100vh-6rem)] flex flex-col  "
     >
       <h1 className="text-2xl font-bold mb-4">Conversations</h1>
 
       <div className="flex flex-1 overflow-hidden rounded-xl border border-border">
       
-        <div className="hidden md:flex flex-col w-80 border-r border-border">
+        {/* Sidebar */}
+        <div
+          className="hidden md:flex flex-col w-80 border-r border-border"
+        >
           <div className="p-4 border-b border-border">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
               <input
                 type="text"
                 placeholder="Search conversations"
-                className="w-full pl-10 pr-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 focus:outline-none text-sm"
+                className="w-full pl-10 pr-4 py-2 rounded-lg bg-white dark:bg-gray-800 focus:outline-none text-sm"
               />
             </div>
           </div>
@@ -151,8 +156,12 @@ const Chats = () => {
               <div
                 key={chat.id}
                 onClick={() => setSelectedChat(chat.id)}
-                className={`flex items-center p-4 hover:bg-gray-100 dark:hover:bg-gray-800 cursor-pointer ${
-                  selectedChat === chat.id ? 'bg-gray-100 dark:bg-gray-800' : ''
+                className={`flex items-center p-4 cursor-pointer transition-colors ${
+                  selectedChat === chat.id
+                    ? isDarkMode
+                      ? 'bg-gray-800'
+                      : 'bg-gradient-to-r from-indigo-100 via-purple-100 to-pink-100'
+                    : 'hover:bg-gray-100 dark:hover:bg-gray-800'
                 }`}
               >
                 <div className="relative">
@@ -183,14 +192,18 @@ const Chats = () => {
           </div>
         </div>
 
-        {/* Chat Content */}
-        <div className="flex flex-col flex-1 overflow-hidden">
-          {/* Chat Header */}
-          <div className="flex items-center justify-between p-4 border-b border-border">
+
+        <div className="flex flex-col flex-1 overflow-hidden bg-white dark:bg-gray-900">
+          
+         
+          <div className={`flex items-center justify-between p-4 border-b border-border ${
+            isDarkMode
+              ? ''
+              : 'bg-gradient-to-r from-indigo-50 via-purple-50 to-pink-50'
+          }`}>
             <div className="flex items-center space-x-3">
-            
               <div>
-                <div className="font-medium"> Aditi</div>
+                <div className="font-medium">{selectedUser?.name}</div>
                 <div className="text-xs text-gray-600 dark:text-gray-400">
                   {selectedUser?.status === 'active' ? 'Active now' : 'Offline'}
                 </div>
@@ -203,8 +216,13 @@ const Chats = () => {
               <Button variant="ghost" size="sm" icon={<MoreVertical size={18} />} />
             </div>
           </div>
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4">
+
+        
+          <div className={`flex-1 overflow-y-auto p-4 ${
+            isDarkMode
+              ? 'bg-gray-900'
+              : 'bg-gradient-to-b from-indigo-50 via-purple-50 to-pink-50'
+          }`}>
             {messages.map((message, index) => (
               <Message
                 key={message.id}
@@ -214,8 +232,8 @@ const Chats = () => {
             ))}
           </div>
 
-          {/* Input */}
-          <ChatInput onSendMessage={handleSendMessage} />
+          
+          <ChatInput  onSendMessage={handleSendMessage}  />
         </div>
       </div>
     </motion.div>
@@ -223,4 +241,3 @@ const Chats = () => {
 };
 
 export default Chats;
-
